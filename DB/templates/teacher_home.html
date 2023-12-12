@@ -1,0 +1,140 @@
+<!-- teacher_home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Home</title>
+    <style>
+        .notification-box {
+            border: 2px solid #bddcff;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 10px;
+            position: relative; /* Added for positioning the revoke button */
+        }
+        .notification-title {
+            font-weight: bold;
+        }
+        .revoke-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff7b7b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .notification-info {
+            font-style: italic;
+            margin-top: 5px;
+            color: #555;
+        }
+    </style>
+        <script>
+        function confirmAndRevoke(notificationId) {
+            if (confirm("Are you sure you want to revoke this notification?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "/revoke_notification/" + notificationId, true);
+                 document.location.reload();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var notificationElement = document.getElementById("notification-" + notificationId);
+                        if (notificationElement) {
+                            notificationElement.remove();
+                             document.location.reload();
+                        }
+                    } else if (this.readyState == 4) {
+                        alert("Failed to revoke notification.");
+                    }
+                };
+                xhr.send();
+            }
+        }
+
+        function submitNotificationForm() {
+            var formData = new FormData(document.getElementById('notificationForm'));
+            fetch('{{ url_for("post_notification") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // 处理成功逻辑，例如添加通知到列表
+                    document.location.reload();
+                }
+            })
+            .catch(error => {document.location.reload()});
+
+            return false; // 阻止表单的默认提交
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Welcome, {{ user.username }}!</h2>
+
+            <!-- 管理员特定功能区域 -->
+            {% if user.is_admin %}
+                <div class="admin-section">
+                    <h3>Admin Panel:</h3>
+                    <ul>
+                        <li><a href="{{ url_for('manage_notifications') }}">Manage Notifications</a></li>
+                        <li><a href="{{ url_for('view_users') }}">View All Users</a></li>
+                        <li><a href="{{ url_for('manage_accounts') }}">Manage User Accounts</a></li>
+                        <!-- 可以根据需要添加更多功能 -->
+                    </ul>
+                </div>
+            {% endif %}
+            <div class="notifications">
+                <h3>Notifications:</h3>
+                {% for notification in notifications %}
+                    <div class="notification-box">
+                        <button class="revoke-button" onclick="confirmAndRevoke('{{ notification[0] }}')">Revoke</button>
+                        <p class="notification-title">{{ notification[1] }}</p>
+                        <p class="notification-content">{{ notification[2] }}</p>
+                        <p class="notification-info">
+                            {% if notification[4] == 'public' %}
+                                Public Notification
+                            {% else %}
+                                Private Notification
+                            {% endif %}
+                            <br>
+                            • Sent at {{ notification[3] }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- 发送通知表单 -->
+            <form id="notificationForm" onsubmit="return submitNotificationForm();">
+            <form action="{{ url_for('post_notification') }}" method="post" class="new-notification">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="content">Content:</label><br>
+                <textarea id="content" name="content" required></textarea><br>
+
+                <label for="dorm_room">Dorm Room (optional):</label>
+                <input type="text" id="dorm_room" name="dorm_room">
+
+                <label for="public_notification">Public Notification:</label>
+                <input type="checkbox" id="public_notification" name="public_notification" value="yes">
+
+                <button type="submit" class="button">Post Notification</button>
+            </form>
+
+            <p><a href="{{ url_for('logout') }}" class="welcome-link">Logout</a></p>
+            <p><a href="{{ url_for('cancel_account') }}" class="welcome-link">Cancel this account</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7faff; /* 淡蓝色调背景 */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.page-content {
+    margin-top: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #41a3ff; /* 淡蓝色调 */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav {
+    background-color: #ddd;
+    padding: 10px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Login Page Styles */
+.login-container {
+    width: 50%; /* 调整登录容器宽度 */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* 白色背景 */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    width: 70%; /* 调整表单宽度 */
+    background-color: #f2f7fc; /* 淡蓝灰色调 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #bddcff; /* 更淡的蓝色边框 */
+    border-radius: 8px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2d7fd1; /* 深蓝色调按钮 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #1b5489; /* 深蓝色按钮悬停效果 */
+}
+
+/* Register Page Styles */
+.register-container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #bddcff;
+    border-radius: 8px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #2d7fd1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #1b5489;
+}
+
+/* Home Page Styles */
+.notification-card {
+    background-color: #ffffff;
+    border: 2px solid #bddcff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Add more styles as needed */
+
+/* 登录和注册页面样式 */
+form {
+    margin-top: 30px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    border: 1px solid #bddcff;
+    border-radius: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #1b5489;
+}
+
+/* 主页样式 */
+.notifications {
+    margin-top: 30px;
+}
+
+.notification {
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #ffffff;
+    border: 2px solid #bddcff;
+    border-radius: 8px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+.button:hover {
+    background-color: #1b5489;
+}
+
+/* 发布通知样式 */
+.new-notification {
+    margin-top: 30px;
+    padding: 20px; /* 调整边框内的内边距，增加内容区域 */
+    border: 2px solid #007bff; /* 修改边框颜色和宽度 */
+    border-radius: 12px; /* 修改边框圆角 */
+}
+
+.new-notification textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    border: 1px solid #bddcff; /* 更淡的蓝色边框 */
+    border-radius: 8px;
+    resize: vertical; /* 允许在垂直方向上调整文本区域大小 */
+}
+
+.new-notification button {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.new-notification button:hover {
+    background-color: #0056b3;
+}
+
+/* Welcome Page Styles */
+.welcome-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.welcome-message {
+    color: #007bff;
+    font-size: 48px; /* 调整字体大小为 48px */
+    margin-bottom: 20px;
+}
+
+.welcome-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px; /* 增加底部边距 */
+}
+
+.welcome-links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.welcome-text {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.welcome-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.welcome-link:hover {
+    text-decoration: underline;
+}
