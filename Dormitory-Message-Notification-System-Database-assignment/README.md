@@ -9,7 +9,7 @@
 
 ### ER图
 
-![ER](images\ER.png)
+![ER](images/ER.png)
 
 ### 实体与关系
 
@@ -33,7 +33,7 @@
 
 如何建表参考项目文件夹中的schema.sql文件，最终数据库中的表如下
 
-![](images\表.png)
+![](images/表.png)
 
 ### 使用说明
 
@@ -43,10 +43,10 @@
 
 ### 项目界面截图展示
 
-![](images\1.png)
+![](images/1.png)
 
-![](images\2.png)
+![](images/2.png)
 
-![](images\3.png)
+![](images/3.png)
 
-![](images\4.png)
+![](images/4.png)
