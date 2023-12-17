@@ -1,0 +1,68 @@
+<!-- student_home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home</title>
+    <style>
+        .notification-box {
+            border: 2px solid #bddcff;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .notification-title {
+            font-weight: bold;
+        }
+        .notification-info {
+            font-style: italic;
+            margin-top: 5px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Welcome, {{ user.username }}!</h2>
+
+            <div class="notifications">
+                <h3>Notifications:</h3>
+                {% for notification in notifications %}
+                    <div class="notification-box">
+                        <p class="notification-title">{{ notification[1] }}</p>
+                        <p class="notification-content">{{ notification[2] }}</p>
+                        <p class="notification-info">
+                            {% if notification[4] == 'public' %}
+                                Public Notification
+                            {% else %}
+                                Private Notification
+                            {% endif %}
+                            <br>
+                            {% if notification[7] == 'teacher' %}
+                                • Sent by {{ notification[5] }} as a teacher
+                            {% elif notification[7] == 'dorm_manager' %}
+                                • Sent by {{ notification[5] }} as a dorm manager
+                            {% else %}
+                                • Sent by {{ notification[5] }} as a student
+                            {% endif %}
+                            <br>
+                            • Sent at {{ notification[3] }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- 这里可以添加其他学生主页的元素或功能 -->
+
+            <p><a href="{{ url_for('logout') }}" class="welcome-link">Logout</a></p>
+            <p><a href="{{ url_for('cancel_account') }}" class="welcome-link">Cancel this account</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+
